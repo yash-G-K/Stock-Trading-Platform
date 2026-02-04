@@ -22,11 +22,11 @@ const BuyActionWindow = ({ uid }) => {
         orderType: "BUY",
         productType: "CNC",
       });
-      console.log("Order placed:", response.data);
+      // console.log("Order placed:", response.data);
       alert(`Order placed successfully! ${stockQuantity} shares of ${uid} at ₹${stockPrice}`);
       GeneralContext.closeBuyWindow();
     } catch (error) {
-      console.error("Error placing order:", error);
+      // console.error("Error placing order:", error);
       const errorMsg = error.response?.data?.error || error.message;
       alert("Failed to place order: " + errorMsg);
     }
