@@ -32,6 +32,33 @@ mongoose.connect(uri, {
     });
 
 // Routes
+
+// Root route - Health check for deployment platforms
+app.get("/", (req, res) => {
+    res.json({
+        status: "success",
+        message: "Stock Trading Platform API is running",
+        version: "1.0.0",
+        endpoints: {
+            holdings: "/allholdings",
+            positions: "/allpositions",
+            orders: "/allorders",
+            newOrder: "/neworder",
+            signup: "/signup",
+            login: "/login"
+        }
+    });
+});
+
+// Health check endpoint
+app.get("/health", (req, res) => {
+    res.status(200).json({
+        status: "healthy",
+        timestamp: new Date().toISOString(),
+        database: mongoose.connection.readyState === 1 ? "connected" : "disconnected"
+    });
+});
+
 // app.get("/addHoldings", async (req, res) => {
 //     try {
 //         const tempholdings = [
